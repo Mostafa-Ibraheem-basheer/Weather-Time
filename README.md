@@ -1,6 +1,6 @@
 ## Description
 
-Weathear & Time is a Startup One-page app that displays usefull information for the users before they begin browsing.
+Weathear&Time is a Startup One-page app that displays useful information for the user before they begin browsing.
 ![](https://github.com/Mostafa-Ibraheem-basheer/presentation/blob/main/presentations/Weather%20%26%20Time/Demo.gif)
 ## Features
 
