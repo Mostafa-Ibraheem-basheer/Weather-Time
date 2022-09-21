@@ -1,0 +1,76 @@
+<!DOCTYPE >
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- make the page responsive on mobile -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather & Time</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="body">
+  <header>
+    <div id="navbar" class="navbar"> <!-- contains the title of the page , the Settings and the change location btn -->
+      <h1 class="title">Weather & Time</h1>
+      <ul>
+        <li><a href="#" id="location-btn">Change Location</a></li>
+        <li><div class="dropdown">
+          <button onclick="showSettings()" class="dropbtn">Settings</button>
+          <div id="myDropdown" class="dropdown-content">
+            <div class="options">
+              <span class="option-name">Toggle Temperature Units</span>
+              <label class="switch">
+                <input id="checkbox-temp" type="checkbox" onchange="changeTemp()">
+                <span class="slider round"></span>
+              </label>
+            </div>  
+            <div class="options">
+              <span class='option-name'>Toggle Time Format</span>
+              <label class="switch">
+                <input id="checkbox-time" type="checkbox" onchange="changeTime()">
+                <span class="slider round"></span>
+              </label>
+            </div> 
+            </div>
+          </div>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </header>
+  <div id="location-menu" class="visuallyhidden hide-menu">
+    <a class="exit-menu" href="#" onclick="exitMenu()">X</a>
+    <ul class="menu-content"><!-- the menu contains +15 countries u can add more by adding the country flag and any of the city names in it -->
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg" alt="Nigeria flag" class="flag"></div><div class="name">Abuja</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" alt="Australia flag" class="flag"></div><div class="name">Australia</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany flag" class="flag"></div><div class="name">Berlin</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg" alt="china flag" class="flag"></div><div class="name">Beijing</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" alt="Brazil flag" class="flag"></div><div class="name">Brasilia</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg" alt="Egypt flag" class="flag"></div><div class="name">Cairo</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA flag" class="flag"></div><div class="name">California</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg" alt="Malaysia flag" class="flag"></div><div class="name">Kuala Lumpur</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK flag" class="flag"></div><div class="name">London</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_Espa%C3%B1a.svg" alt="Spain flag" class="flag"></div><div class="name">Madrid</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg" alt="Mexico flag" class="flag"></div><div class="name">Mexico City</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" alt="Russia flag" class="flag"></div><div class="name">Moscow</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India flag" class="flag"></div><div class="name">New Delhi</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada flag" class="flag"></div><div class="name">Ottawa</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="France flag" class="flag"></div><div class="name">Paris</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Saudi_Arabia_%28type_1%29.svg" alt="Saudi Arabia flag" class="flag"></div><div class="name">Riyadh</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" alt="Japan flag" class="flag"></div><div class="name">Tokyo</div></li>
+      <li><div><img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA flag" class="flag"></div><div class="name">Washington</div></li>
+    </ul>
+  </div>
+  <div class="mask"></div> <!-- used to add the background image and animation --> 
+  <main class="main">
+    <div class="temp"></div>
+    <div class="time">Fetching Data...</div>
+  </main>
+  <script src="js/app.js"></script>
+  <footer class="footer"> <!-- since our mask has covered the main div we can use the footer to add the search function instead -->
+    <div>
+      <input type="text" placeholder="Search.." class="search-bar" onfocus="moveBtn()" onfocusout="moveBtn()">
+      <a href="#" class="search" onclick="googleSearch()"><img class="search-btn" src="css/assets/spyglass.png" alt="spyglass"></a>
+    </div>
+</footer>
+</body>
+</html>

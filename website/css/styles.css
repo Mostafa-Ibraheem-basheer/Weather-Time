@@ -1,0 +1,477 @@
+@font-face { /* import custom font */
+    font-family: roboto;
+    src: url('fonts/roboto.ttf');
+}
+/* styling of the containers*/
+html,body{ /* disable scroll since the mask is very large and has no content it's just for the animation porposes */
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'roboto', monospace;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+main{
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    background-color:black;
+    color: #ccc;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-repeat: repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: -2;
+}
+.mask{/* used to add a background image */
+    position: absolute;
+    top: 0;
+    width: 1000000%;/* this way the image will not be contained in the screen and hence will move on any screen size */
+    height: 100%;
+    background-repeat: repeat;
+    background-size: contain;
+    z-index: -1;
+}
+/* style rules to be added to the main section and menu using JS*/
+.daytime{
+    background: rgb(114, 180, 206);
+}
+.sunset{
+    background: linear-gradient(180deg, rgba(156,138,196,1) 12%, rgba(254,128,0,1) 88%, rgba(241,78,1,1) 100%);
+}
+.night{
+    background: linear-gradient(180deg, rgba(29,63,103,1) 65%, rgba(32,44,78,1) 100%);
+}
+.clouds{
+    opacity: 0.4;
+    background-image: url('assets/cloud.png');
+    animation: moveclouds 2000000s infinite linear alternate;
+}
+.stars{
+    opacity: 1;
+    background-image: url('assets/night.png');
+    animation: starlight 3s infinite ease-in-out alternate;
+}
+ 
+footer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 10%;
+    width: 100%;
+}
+
+.time{
+    font-size: 5em;
+    margin: 30px;
+    text-align: center;
+}
+.temp{
+    font-size: 8em;
+    margin: 30px;
+}
+.search-bar{
+    outline: none;
+    border-radius: 25px;
+    height: 40px;
+    background-color: inherit;
+    border: solid 2px rgb(127, 157, 168);
+    width: 200px;
+    transition: 0.3s ease-out;
+    font-family: inherit;
+    font-size: 18px;
+    color: #ccc;
+    text-indent: 10px;
+}
+::placeholder{
+    color: #ccc;
+}
+.search-bar:focus{
+    border-color:rgb(188, 235, 253);
+    width: 400px;
+}
+.search-btn {
+    position: relative;
+    width: 18px;
+    right: 15%;
+    bottom: -5%;
+}
+.move-btn{
+    right: 9%;
+}
+.navbar{
+    z-index: 1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+ul{
+    display: flex;
+    list-style: none;
+    padding-right: 2%;
+}
+li{
+    margin: 10px;
+    font-size: 18px;
+}
+h1{
+    padding-left: 4%;
+}
+a {
+    font-family: inherit;
+    text-decoration: none;
+    color: white;
+}
+
+/* styling of the navbar items*/
+li a {
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+  
+li a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -5;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+li a:hover:after { /* the underline effect */
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.dropbtn { /* settings button styling */
+    background-color: inherit;
+    color: white;
+    font-size: 18px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+  /* Dropdown button on hover & focus */
+.dropbtn:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -5;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.dropbtn:hover:after{ /* same underline as the anchor */
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+  
+  
+
+  /* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+  
+  /* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    padding: 5px;
+    background-color: inherit;
+    min-width: 350%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.options{ /* content styling */
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.option-name{
+    font-size: 16px;
+}
+
+  /* Show the dropdown menu when added as a class to it*/
+.show {
+    display:block;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+}
+  
+  /* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+  /* The slider styling*/
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: rgb(34, 185, 34);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before { /* movement of the switch on the slider */
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+}
+  
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#location-menu{ /* styling of the locations menu */
+    display: flex;
+    opacity: 1;
+    position: absolute;
+    border-radius: 5px;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 70%;
+    transition: all 0.5s linear;
+    color: white;
+    border: solid 1px rgb(188, 235, 253);
+    z-index: 1;
+}
+
+ /* add these two classes to hide menu */
+.hide-menu{
+    display:none !important;
+}
+.visuallyhidden{
+    opacity: 0 !important;
+}
+/* blur the visible sections when the menu is visible */
+.location-menu-active{
+    transition: 0.4s linear;
+    filter:blur(2px);
+}
+/* hide the time and temp when the menu is visible */
+.hide-data{
+    visibility: hidden;
+}
+/* the X button */
+.exit-menu{
+    font-weight: bold;
+    position: relative;
+    top: -4%;
+    left: 102%;
+    color: rgb(188, 235, 253);
+}
+/* List of countries styling */
+.menu-content{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 80%;
+}
+/* styling of menu items */
+.menu-content li{
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.menu-content li:hover{
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+}
+
+.menu-content li:focus{
+    filter: brightness(0.7);
+}
+/* Image dimensions */
+.flag{
+    width: 50px;
+    height: 30px;
+}
+/* name of the country styling */
+.name{
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* scrollbar of menu */
+::-webkit-scrollbar {/* width */
+    width: 5px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey; 
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: skyblue; 
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(84, 188, 230); 
+}
+
+/* small screen styles*/
+@media screen and (max-width:730px) {
+    .time{
+        max-width: 50%;
+        font-size: 3.5em;
+    }
+    .temp{
+        font-size: 6em;
+    }
+}
+
+
+@media screen and (max-width: 620px){
+    .navbar{
+        justify-content: center;
+    }
+    .time{
+        max-width: 100%;
+        font-size: 3em;
+    }
+    .temp{
+        font-size: 5em;
+    }
+    footer{
+        font-size: 12px;
+        margin-right: 5px;
+    }
+    .menu-content{
+        height: 95%;
+    }
+    .menu-content li{
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        flex-grow: 0.8;
+    }
+    #location-menu{
+        width: 90%;
+        left: 4%;
+    }
+    .name{
+        margin: 0 0 0 0;
+    }
+    
+}
+
+@media screen and (max-width:340px) {
+    .menu-content{
+        width: 78%;
+    }
+    .search-bar:focus{
+        width: 100px;
+    }
+    .move-btn{
+        right: 15%;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .search-bar:focus{
+        width: 250px;
+    }
+    .move-btn{
+        right: 11%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .menu-content {
+        width: 90%;
+    }
+}
+
+
+
+/* Animations */
+
+@keyframes moveclouds { /* daytime and sunset */
+    0% { background-position: 0 center; }
+    25% { background-position: 25% center; }
+    50% { background-position: 50% center; }
+    75% { background-position: 75% center; }
+    100% { background-position: 100% center; }
+}
+
+@keyframes starlight { /* nighttime  */
+    0% {-webkit-filter: brightness(0.2);
+        filter: brightness(0.2);}
+        
+    100% {-webkit-filter: brightness(5);
+        filter: brightness(5);}
+}
