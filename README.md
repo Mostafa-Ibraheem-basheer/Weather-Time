@@ -17,6 +17,16 @@ Weathear&Time is a Startup One-page app that displays useful information for the
 * Search bar to begin your browsing journey!.
 * ![](https://github.com/Mostafa-Ibraheem-basheer/presentation/blob/main/presentations/Weather%20%26%20Time/Search.gif)
 
+## Installation
+
+type in your project root directory
+
+```nodejs
+
+npm install
+
+```
+
 ## Made by
 
 [Mostafa Ibraheem Basheer](mostafa.i.basheer@gmail.com)
