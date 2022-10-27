@@ -5,6 +5,7 @@
 /* styling of the containers*/
 html,body{ /* disable scroll since the mask is very large and has no content it's just for the animation porposes */
     max-width: 100%;
+    min-height: 510px;
     overflow-x: hidden;
 }
 
